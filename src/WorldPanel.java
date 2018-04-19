@@ -46,7 +46,6 @@ public class WorldPanel extends JPanel implements ActionListener {
 			}
 		}
 
-		System.out.println("hello");
 	}
 
 	public void step() {
@@ -120,7 +119,6 @@ public class WorldPanel extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		step();
-		System.out.println("hi");
 	}
 
 }

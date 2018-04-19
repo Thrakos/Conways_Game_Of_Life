@@ -57,8 +57,6 @@ public class Cell implements Drawable {
 			g.drawRect(x, y, ConwaysGameOfLife.CELL_SIZE, ConwaysGameOfLife.CELL_SIZE);
 		}
 
-		System.out.println("blah");
-
 	}
 
 }
