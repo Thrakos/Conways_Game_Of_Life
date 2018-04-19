@@ -1,6 +1,5 @@
 import java.awt.Color;
 import java.awt.Graphics;
-import java.util.ArrayList;
 
 public class Cell implements Drawable {
 	private int x;
@@ -14,7 +13,7 @@ public class Cell implements Drawable {
 
 	}
 
-	public void liveOrDie(ArrayList<Cell> neighbors) {
+	public void liveOrDie(int neighbors) {
 		// sets isAlive to true or false based on the neighbors and
 		// the rules of the game
 		/*
@@ -25,28 +24,24 @@ public class Cell implements Drawable {
 		 * neighbours becomes a live cell, as if by reproduction. (source: Wikipedia)
 		 */
 
-		int liveNeighbors = 0;
-
-		for (Cell c : neighbors) {
-			if (c.isAlive) {
-				liveNeighbors++;
-			}
-		}
-
 		if (isAlive) {
-			if (liveNeighbors < 2) {
+			if (neighbors < 2) {
 				isAlive = false;
-			} else if (liveNeighbors > 3) {
+			} else if (neighbors > 3) {
 				isAlive = false;
 			}
-		} else if (liveNeighbors == 3) {
+		} else if (neighbors == 3) {
 			isAlive = true;
 		}
 
 	}
 
-	public void alive(boolean thing) {
-		isAlive = thing;
+	public void alive(boolean live) {
+		isAlive = live;
+	}
+
+	public boolean getAlive() {
+		return isAlive;
 	}
 
 	@Override
@@ -61,6 +56,8 @@ public class Cell implements Drawable {
 		} else {
 			g.drawRect(x, y, ConwaysGameOfLife.CELL_SIZE, ConwaysGameOfLife.CELL_SIZE);
 		}
+
+		System.out.println("blah");
 
 	}
 

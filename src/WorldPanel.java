@@ -1,11 +1,18 @@
 import java.awt.Graphics;
-import java.util.ArrayList;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class WorldPanel implements Drawable {
+import javax.swing.JPanel;
+import javax.swing.Timer;
+
+public class WorldPanel extends JPanel implements ActionListener {
 	private Cell[][] cells;
 
 	int width;
 	int height;
+	int cell_size;
+
+	Timer timer = new Timer(500, this);
 
 	WorldPanel(int width, int height, int cell_size) {
 		cells = new Cell[width / cell_size][height / cell_size];
@@ -25,17 +32,21 @@ public class WorldPanel implements Drawable {
 
 		this.width = width;
 		this.height = height;
+		this.cell_size = cell_size;
 	}
 
 	@Override
-	public void draw(Graphics g) {
+	public void paintComponent(Graphics g) {
 		// iterate through cells and draw them
+		super.paintComponent(g);
 
 		for (int i = 0; i < cells.length; i++) {
 			for (int j = 0; j < cells[0].length; j++) {
 				cells[i][j].draw(g);
 			}
 		}
+
+		System.out.println("hello");
 	}
 
 	public void step() {
@@ -43,7 +54,7 @@ public class WorldPanel implements Drawable {
 		// iterate through cells and get their neighbors
 		// check if each cell should live or die
 
-		ArrayList<Cell> neighbors = new ArrayList<Cell>();
+		int neighbors = 0;
 
 		for (int i = 0; i < cells.length; i++) {
 			for (int j = 0; j < cells[0].length; j++) {
@@ -52,38 +63,64 @@ public class WorldPanel implements Drawable {
 			}
 		}
 
+		repaint();
+
 	}
 
-	public ArrayList<Cell> getNeighbors(int x, int y) {
+	public int getNeighbors(int x, int y) {
 
-		ArrayList<Cell> neighbors = new ArrayList<Cell>();
+		int thing = 0;
 
 		if (x > 0) {
-			neighbors.add(cells[x - 1][y]);
-			if (y > 0) {
-				neighbors.add(cells[x][y - 1]);
-				neighbors.add(cells[x - 1][y - 1]);
+			if (cells[x - 1][y].getAlive()) {
+				thing++;
 			}
-			if (y < height) {
-				neighbors.add(cells[x][y + 1]);
-				neighbors.add(cells[x - 1][y + 1]);
+			if (y > 0) {
+				if (cells[x - 1][y - 1].getAlive()) {
+					thing++;
+				}
+			}
+			if (y < cells[0].length - 1) {
+				if (cells[x - 1][y + 1].getAlive()) {
+					thing++;
+				}
 			}
 		}
-		if (x < width) {
-			neighbors.add(cells[x + 1][y]);
-			if (y > 0) {
-				neighbors.add(cells[x][y - 1]);
-				neighbors.add(cells[x + 1][y - 1]);
+		if (x < cells.length - 1) {
+			if (cells[x + 1][y].getAlive()) {
+				thing++;
 			}
-			if (y < height) {
-				neighbors.add(cells[x][y + 1]);
-				neighbors.add(cells[x + 1][y + 1]);
+			if (y > 0) {
+				if (cells[x + 1][y - 1].getAlive()) {
+					thing++;
+				}
+			}
+			if (y < cells[0].length - 1) {
+				if (cells[x + 1][y + 1].getAlive()) {
+					thing++;
+				}
+			}
+		}
+		if (y > 0) {
+			if (cells[x][y - 1].getAlive()) {
+				thing++;
+			}
+		}
+		if (y < cells[0].length - 1) {
+			if (cells[x][y + 1].getAlive()) {
+				thing++;
 			}
 		}
 
 		// returns an array list of the 8 or less neighbors of the
 		// cell identified by x and y
-		return neighbors;
+		return thing;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		step();
+		System.out.println("hi");
 	}
 
 }

@@ -1,4 +1,4 @@
-import java.awt.Graphics;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -34,32 +34,29 @@ public class ConwaysGameOfLife extends JPanel implements ActionListener {
 	}
 
 	public void runSimulation() {
-		while (true) {
-			wp.step();
-		}
+		wp.step();
 	}
 
 	public void launchGame() {
 		// build the window and start the simulation
 
 		window.add(this);
+		window.add(wp);
 		window.setVisible(true);
-		window.setSize(WIDTH, HEIGHT);
+		window.getContentPane().setPreferredSize(new Dimension(WIDTH, HEIGHT));
+		window.pack();
 		startStopButton.setSize(50, 20);
 		startStopButton.setText("Start/Stop");
 		this.add(startStopButton);
 		startStopButton.addActionListener(this);
-		repaint();
+		wp.repaint();
 
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		runSimulation();
+		// runSimulation();
+		// wp.timer.start();
 	}
 
-	@Override
-	public void paintComponent(Graphics g) {
-		wp.draw(g);
-	}
 }
