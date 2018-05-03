@@ -12,7 +12,7 @@ public class WorldPanel extends JPanel implements ActionListener {
 	int height;
 	int cell_size;
 
-	Timer timer = new Timer(500, this);
+	Timer timer = new Timer(300, this);
 
 	WorldPanel(int width, int height, int cell_size) {
 		cells = new Cell[width / cell_size][height / cell_size];
@@ -29,6 +29,58 @@ public class WorldPanel extends JPanel implements ActionListener {
 		cells[4][6].alive(true);
 
 		cells[7][8].alive(true);
+
+		// cells[20][10].alive(true);
+		// cells[21][10].alive(true);
+		// cells[22][10].alive(true);
+
+		cells[15][15].alive(true);
+		cells[16][15].alive(true);
+		cells[17][15].alive(true);
+
+		cells[18][17].alive(true);
+		cells[18][18].alive(true);
+		cells[18][19].alive(true);
+
+		cells[15][20].alive(true);
+		cells[16][20].alive(true);
+		cells[17][20].alive(true);
+
+		cells[13][17].alive(true);
+		cells[13][18].alive(true);
+		cells[13][19].alive(true);
+
+		cells[20][17].alive(true);
+		cells[20][18].alive(true);
+		cells[20][19].alive(true);
+
+		cells[21][15].alive(true);
+		cells[22][15].alive(true);
+		cells[23][15].alive(true);
+
+		cells[25][17].alive(true);
+		cells[25][18].alive(true);
+		cells[25][19].alive(true);
+
+		cells[21][20].alive(true);
+		cells[22][20].alive(true);
+		cells[23][20].alive(true);
+
+		cells[15][22].alive(true);
+		cells[16][22].alive(true);
+		cells[17][22].alive(true);
+
+		cells[13][23].alive(true);
+		cells[13][24].alive(true);
+		cells[13][25].alive(true);
+
+		cells[15][27].alive(true);
+		cells[16][27].alive(true);
+		cells[17][27].alive(true);
+
+		cells[18][23].alive(true);
+		cells[18][24].alive(true);
+		cells[18][25].alive(true);
 
 		this.width = width;
 		this.height = height;
@@ -53,12 +105,17 @@ public class WorldPanel extends JPanel implements ActionListener {
 		// iterate through cells and get their neighbors
 		// check if each cell should live or die
 
-		int neighbors = 0;
+		int[][] neighbors = new int[cells.length][cells[0].length];
 
 		for (int i = 0; i < cells.length; i++) {
 			for (int j = 0; j < cells[0].length; j++) {
-				neighbors = getNeighbors(i, j);
-				cells[i][j].liveOrDie(neighbors);
+				neighbors[i][j] = getNeighbors(i, j);
+			}
+		}
+
+		for (int i = 0; i < cells.length; i++) {
+			for (int j = 0; j < cells[0].length; j++) {
+				cells[i][j].liveOrDie(neighbors[i][j]);
 			}
 		}
 
@@ -74,30 +131,10 @@ public class WorldPanel extends JPanel implements ActionListener {
 			if (cells[x - 1][y].getAlive()) {
 				thing++;
 			}
-			if (y > 0) {
-				if (cells[x - 1][y - 1].getAlive()) {
-					thing++;
-				}
-			}
-			if (y < cells[0].length - 1) {
-				if (cells[x - 1][y + 1].getAlive()) {
-					thing++;
-				}
-			}
 		}
 		if (x < cells.length - 1) {
 			if (cells[x + 1][y].getAlive()) {
 				thing++;
-			}
-			if (y > 0) {
-				if (cells[x + 1][y - 1].getAlive()) {
-					thing++;
-				}
-			}
-			if (y < cells[0].length - 1) {
-				if (cells[x + 1][y + 1].getAlive()) {
-					thing++;
-				}
 			}
 		}
 		if (y > 0) {
@@ -107,6 +144,26 @@ public class WorldPanel extends JPanel implements ActionListener {
 		}
 		if (y < cells[0].length - 1) {
 			if (cells[x][y + 1].getAlive()) {
+				thing++;
+			}
+		}
+		if (x > 0 && y > 0) {
+			if (cells[x - 1][y - 1].getAlive()) {
+				thing++;
+			}
+		}
+		if (x < cells.length - 1 && y > 0) {
+			if (cells[x + 1][y - 1].getAlive()) {
+				thing++;
+			}
+		}
+		if (x > 0 && y < cells[0].length - 1) {
+			if (cells[x - 1][y + 1].getAlive()) {
+				thing++;
+			}
+		}
+		if (x < cells.length - 1 && y < cells[0].length - 1) {
+			if (cells[x + 1][y + 1].getAlive()) {
 				thing++;
 			}
 		}

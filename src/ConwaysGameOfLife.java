@@ -13,6 +13,7 @@ public class ConwaysGameOfLife extends JPanel implements ActionListener {
 	public static final int CELL_SIZE = 10;
 
 	private JFrame window;
+	private JPanel panel;
 	private JButton startStopButton;
 	private JTextField speedField;
 
@@ -23,6 +24,7 @@ public class ConwaysGameOfLife extends JPanel implements ActionListener {
 		window = new JFrame();
 		startStopButton = new JButton();
 		speedField = new JTextField();
+		panel = new JPanel();
 
 	}
 
@@ -42,12 +44,13 @@ public class ConwaysGameOfLife extends JPanel implements ActionListener {
 
 		window.add(this);
 		window.add(wp);
+		wp.add(panel);
 		window.setVisible(true);
 		window.getContentPane().setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		window.pack();
 		startStopButton.setSize(50, 20);
 		startStopButton.setText("Start/Stop");
-		this.add(startStopButton);
+		panel.add(startStopButton);
 		startStopButton.addActionListener(this);
 		wp.repaint();
 
@@ -56,7 +59,7 @@ public class ConwaysGameOfLife extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// runSimulation();
-		// wp.timer.start();
+		wp.timer.start();
 	}
 
 }
