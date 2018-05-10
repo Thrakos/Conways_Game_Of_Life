@@ -44,6 +44,14 @@ public class Cell implements Drawable {
 		return isAlive;
 	}
 
+	public int getX() {
+		return x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
 	@Override
 	public void draw(Graphics g) {
 		// draws colored square if cell is alive
