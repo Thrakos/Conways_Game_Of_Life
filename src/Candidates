@@ -1,0 +1,36 @@
+public List<Candidate> getCandidatesForPosition(String position) {
+	
+	ArrayList<Candidate> candidates = new ArrayList <Candidtate>();
+	
+	for (int i = 0; i < pool.length(); i++) {
+		if (pool.get(i).getPosition == position) {
+			candidates.add(pool.get(i));
+		}
+	}
+	
+	return candidates;
+}
+
+public Candidate getBestCandidate(String position) {
+	
+	double bestScore = 0;
+	Candidate best;
+	ArrayList<Candidate> candidates = new ArrayList <Candidtate>();
+	
+	candidates = getCandidatesForPosition(position);
+	
+	for (int i = 0; i < candidates.size(); i++) {
+		if (candidates.get(i).getInterviewScore() > bestScore) {
+			bestScore = candidates.get(i).getInterviewScore();
+			best = candidates.get(i);
+		}
+	}
+	
+	return best;
+}
+
+public int removeCandidatesForPosition(String position) {
+
+	
+
+}
