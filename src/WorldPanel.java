@@ -25,60 +25,6 @@ public class WorldPanel extends JPanel implements ActionListener, MouseListener 
 			}
 		}
 
-		cells[3][5].alive(true);
-		cells[3][6].alive(true);
-		cells[4][5].alive(true);
-		cells[4][6].alive(true);
-
-		cells[15][15].alive(true);
-		cells[16][15].alive(true);
-		cells[17][15].alive(true);
-		cells[18][17].alive(true);
-		cells[18][18].alive(true);
-		cells[18][19].alive(true);
-		cells[15][20].alive(true);
-		cells[16][20].alive(true);
-		cells[17][20].alive(true);
-		cells[13][17].alive(true);
-		cells[13][18].alive(true);
-		cells[13][19].alive(true);
-		cells[20][17].alive(true);
-		cells[20][18].alive(true);
-		cells[20][19].alive(true);
-		cells[21][15].alive(true);
-		cells[22][15].alive(true);
-		cells[23][15].alive(true);
-		cells[25][17].alive(true);
-		cells[25][18].alive(true);
-		cells[25][19].alive(true);
-		cells[21][20].alive(true);
-		cells[22][20].alive(true);
-		cells[23][20].alive(true);
-		cells[15][22].alive(true);
-		cells[16][22].alive(true);
-		cells[17][22].alive(true);
-		cells[13][23].alive(true);
-		cells[13][24].alive(true);
-		cells[13][25].alive(true);
-		cells[15][27].alive(true);
-		cells[16][27].alive(true);
-		cells[17][27].alive(true);
-		cells[18][23].alive(true);
-		cells[18][24].alive(true);
-		cells[18][25].alive(true);
-		cells[20][23].alive(true);
-		cells[20][24].alive(true);
-		cells[20][25].alive(true);
-		cells[21][22].alive(true);
-		cells[22][22].alive(true);
-		cells[23][22].alive(true);
-		cells[21][27].alive(true);
-		cells[22][27].alive(true);
-		cells[23][27].alive(true);
-		cells[25][23].alive(true);
-		cells[25][24].alive(true);
-		cells[25][25].alive(true);
-
 		this.width = width;
 		this.height = height;
 		this.cell_size = cell_size;

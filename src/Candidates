@@ -1,9 +1,10 @@
+PART A
 public List<Candidate> getCandidatesForPosition(String position) {
 	
-	ArrayList<Candidate> candidates = new ArrayList <Candidtate>();
+	ArrayList<Candidate> candidates = new ArrayList <Candidate>();
 	
 	for (int i = 0; i < pool.length(); i++) {
-		if (pool.get(i).getPosition == position) {
+		if (pool.get(i).getPosition.equals(position)) {
 			candidates.add(pool.get(i));
 		}
 	}
@@ -11,6 +12,7 @@ public List<Candidate> getCandidatesForPosition(String position) {
 	return candidates;
 }
 
+PART B
 public Candidate getBestCandidate(String position) {
 	
 	double bestScore = 0;
@@ -29,8 +31,18 @@ public Candidate getBestCandidate(String position) {
 	return best;
 }
 
+PART C
 public int removeCandidatesForPosition(String position) {
-
 	
-
+	int numRemoved = 0;
+	
+	for (int i = 0; i < candidates.size(); i++) {
+		if (pool.get(i).getPosition.equals(position)) {
+			pool.remove(i);
+			numRemoved++;
+		}
+	}
+	
+	return numRemoved;
+	
 }
